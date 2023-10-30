@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "414687229694",
+    "project_id": "kizuna-16e2d",
+    "storage_bucket": "kizuna-16e2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:414687229694:android:099797d9ea55df51bd17af",
+        "android_client_info": {
+          "package_name": "tr.com.alkimkivanccivi.kizuna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "414687229694-h00k1jhag7e0dblqf8rimq00u3npa3es.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tr.com.alkimkivanccivi.kizuna",
+            "certificate_hash": "cb4ee1f577266e21326faabb8ce7fd5dc95f950a"
+          }
+        },
+        {
+          "client_id": "414687229694-q961v3qep1sjkjfma19vp4cq2sofqsgg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGCe1qg5MEsrxhp7q4-JShypblGiCnLGU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "414687229694-q961v3qep1sjkjfma19vp4cq2sofqsgg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
