@@ -63,15 +63,13 @@ fun LoginPage(navController: NavController, ) {
             }
         }
     }
-    fun launch(signInResult: BeginSignInResult) {
-        val intent = IntentSenderRequest.Builder(signInResult.pendingIntent.intentSender).build()
-        launcher.launch(intent)
-    }
+
     when(val oneTapSignInResponse: Response<BeginSignInResult> = viewModel.oneTapSignInResponse) {
         is Loading -> Text(text = "loading")
         is Success -> oneTapSignInResponse.data?.let {
             LaunchedEffect(it) {
-                launch(it)
+                val intent = IntentSenderRequest.Builder(it.pendingIntent.intentSender).build()
+                launcher.launch(intent)
             }
         }
         is Failure -> LaunchedEffect(Unit) {
@@ -147,7 +145,7 @@ fun LoginPage(navController: NavController, ) {
                     )
                 }
             }
-
+            /*
             FilledTonalButton(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -175,6 +173,8 @@ fun LoginPage(navController: NavController, ) {
                 }
 
             }
+
+             */
         }
     }
 }
