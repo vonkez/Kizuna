@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "414687229694-ghv9b58a4ag27t0tov15ogfh5gbtfseo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "tr.com.alkimkivanccivi.kizuna",
+            "certificate_hash": "26a20000df35b93ee3b6787ae3d62b87f88e055a"
+          }
+        },
+        {
           "client_id": "414687229694-h00k1jhag7e0dblqf8rimq00u3npa3es.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

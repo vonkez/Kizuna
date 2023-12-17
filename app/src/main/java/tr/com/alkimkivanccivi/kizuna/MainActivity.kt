@@ -26,9 +26,6 @@ class KizunaApp: Application()
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
-    private lateinit var oneTapClient: SignInClient
-    private lateinit var signInRequest: BeginSignInRequest
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -43,7 +40,6 @@ fun App() {
     val appState: AppState = rememberAppState()
 
     KizunaTheme {
-        // A surface container using the 'background' color from the theme
         NavHost(navController = appState.navController, startDestination = "login") {
             composable("login") { LoginPage(appState.navController) }
             composable("contactspage") { ContactsPage(appState.navController) }
@@ -51,22 +47,5 @@ fun App() {
                 ChatPage(appState.navController, backStackEntry.arguments!!.getString("uid")!!, backStackEntry.arguments!!.getString("displayName")!!)
             }
         }
-
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    KizunaTheme {
-        Greeting("Androidahjksd")
     }
 }

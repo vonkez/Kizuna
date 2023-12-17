@@ -48,6 +48,7 @@ class MessageRepository {
     var users = mutableStateMapOf<String,String>()
     var messages = mutableStateMapOf<String,List<Message>>()
     var connectionStatus = mutableStateOf(ConnectionStatus.NotConnected)
+    var client: HttpClient?  = null
 
 
     suspend fun startListening() {
@@ -56,6 +57,7 @@ class MessageRepository {
         val token = auth.currentUser!!.getIdToken(true).await().token ?: return
 
         val client = createClient(token)
+        this.client = client
         fetchPreviousMessages(client)
 
         try {
@@ -83,6 +85,7 @@ class MessageRepository {
                             //val message = Json.decodeFromString<Message>(msg)
                             val message = Message(uid, auth.uid!!, msg, Date().time)
                             var messagesList = messages[uid]
+
                             if (messagesList == null){ // new contact
                                 messagesList = mutableListOf()
                                 val displayName = fetchDisplayName(client, uid)
@@ -123,6 +126,8 @@ class MessageRepository {
         val message = Message(auth.uid!!, uid, content, Date().time)
         var messagesList = messages[uid]
         if (messagesList == null){ // new contact
+            val displayName = fetchDisplayName(this.client!!, uid)
+            users[uid] = displayName
             messagesList = mutableListOf()
         }
         val tempMessageList = messagesList!!.toMutableList()
