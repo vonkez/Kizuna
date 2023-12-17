@@ -10,18 +10,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PersonAdd
@@ -40,7 +35,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
-
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -51,7 +45,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
@@ -61,16 +54,18 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.common.moduleinstall.ModuleInstall
+import com.google.android.gms.common.moduleinstall.ModuleInstallRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.codescanner.GmsBarcodeScannerOptions
 import com.google.mlkit.vision.codescanner.GmsBarcodeScanning
-import kotlinx.coroutines.tasks.await
 import org.ocpsoft.prettytime.PrettyTime
 import java.util.Date
 
-val p = PrettyTime();
+
+val p = PrettyTime()
 
 @Composable
 fun ContactsPage(navController: NavController) {
@@ -144,6 +139,12 @@ fun ContactsPage(navController: NavController) {
         },
         floatingActionButton = {
             FloatingActionButton(onClick = {
+                val moduleInstall = ModuleInstall.getClient(ctx)
+                val moduleInstallRequest = ModuleInstallRequest.newBuilder()
+                    .addApi(scanner)
+                    .build()
+                moduleInstall.installModules(moduleInstallRequest)
+
                 val s = scanner.startScan()
                     .addOnSuccessListener { barcode ->
                         Log.d("TAG", "barcode: ${barcode.rawValue}")
@@ -160,7 +161,7 @@ fun ContactsPage(navController: NavController) {
                         Log.d("TAG", "barcode: cancelled")
                     }
                     .addOnFailureListener { e ->
-                        Log.d("TAG", "barcode: fail")
+                        Log.e("TAG", "barcode: fail",e)
                     }
 
                 // viewModel.getMessageHistory()
