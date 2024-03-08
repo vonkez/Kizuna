@@ -10,4 +10,4 @@ Backend: [github.com/vonkez/kizuna-backend](https://github.com/vonkez/kizuna-bac
 
 
 ## Images
-<img src="images/kizuna1.png" width="300"> <img src="images/kizuna2.png" width="300">
+<img src="images/kizuna1.png" width="800"> <img src="images/kizuna2.png" width="800">
